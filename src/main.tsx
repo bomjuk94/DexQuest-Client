@@ -18,6 +18,7 @@ import Dashboard from './Pages/Dashboard'
 import MyTeams from './Pages/MyTeams'
 import { FavouritesLoader } from './components/FavouritesLoader'
 import ScrollToTop from './Pages/ScrollToTop'
+import ProtectedRoute from './components/ProtectedRoute'
 
 window.addEventListener("storage", (e) => {
   if (e.key === "colorScheme") {
@@ -34,21 +35,48 @@ createRoot(document.getElementById('root')!).render(
         <ScrollToTop />
         <Header />
 
-        {/* 🛠️ Here's the important wrapper */}
         <div className="flex-grow bg-primary">
           <Routes>
             <Route path='/' element={<App />} />
             <Route path='/pokemon' element={<Navigate to="/" replace />} />
             <Route path='/pokemon/:id' element={<PokemonIndividual />} />
-            <Route path='/favourites' element={<Favourites />} />
+            <Route
+              path='/favourites'
+              element={
+                <ProtectedRoute>
+                  <Favourites />
+                </ProtectedRoute>
+              }
+            />
             <Route path='/team-builder' element={<TeamBuilder />} />
             <Route path='/dexquest-comparison' element={<PokemonComparison />} />
             <Route path='/silhouette-game' element={<SilhouetteGame />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/my-teams' element={<MyTeams />} />
+            <Route
+              path='/profile'
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='/dashboard'
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path='/my-teams'
+              element={
+                <ProtectedRoute>
+                  <MyTeams />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </div>
 

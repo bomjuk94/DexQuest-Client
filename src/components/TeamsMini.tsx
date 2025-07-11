@@ -1,5 +1,6 @@
 import TeamsList from "./TeamsList"
 import { type TeamsMiniProps } from "../types/TeamsMiniProps"
+import { useEffect } from "react";
 
 const TeamsMini = ({
     teams,
@@ -12,6 +13,13 @@ const TeamsMini = ({
     setNameInputs,
     setTeams
 }: TeamsMiniProps) => {
+
+    useEffect(() => {
+        if (currentTeams.length === 0 && teamsPage > 1) {
+            goToPrevTeamsPage();
+        }
+    }, [currentTeams, teamsPage, goToPrevTeamsPage]);
+
     return (
         <>
             <div className="flex flex-col gap-10">

@@ -1,5 +1,6 @@
 import SilhouetteList from "./SilhouetteList"
 import { type SilhouetteMiniProps } from "../types/SilhouetteMiniProps"
+import { useEffect } from "react"
 
 const SilhouetteMini = ({
     silhouettes,
@@ -12,6 +13,13 @@ const SilhouetteMini = ({
     setSilhouettes,
     goToNextSilhouettePage,
 }: SilhouetteMiniProps) => {
+
+    useEffect(() => {
+        if (currentSilhouette.length === 0 && silhouettePage > 1) {
+            goToPrevSilhouettePage();
+        }
+    }, [currentSilhouette, silhouettePage, goToPrevSilhouettePage]);
+
     return (
         <>
             <div className="flex flex-col gap-10">

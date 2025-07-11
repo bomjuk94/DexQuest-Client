@@ -1,5 +1,6 @@
 import ComparisonsList from "./ComparisonsList"
 import { type ComparisonsMiniProps } from "../types/ComparisonsMiniProps"
+import { useEffect } from "react"
 
 const ComparisonsMini = ({
     comparisons,
@@ -12,6 +13,13 @@ const ComparisonsMini = ({
     comparisonsPage,
     goToNextComparisonsPage,
 }: ComparisonsMiniProps) => {
+
+    useEffect(() => {
+        if (currentComparisons.length === 0 && comparisonsPage > 1) {
+            goToPrevComparisonsPage();
+        }
+    }, [currentComparisons, comparisonsPage, goToPrevComparisonsPage]);
+
     return (
         <>
             <div className="flex flex-col gap-10">

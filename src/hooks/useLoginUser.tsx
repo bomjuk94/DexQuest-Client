@@ -25,35 +25,29 @@ export const useLoginUser = () => {
         if (data.errors || data.error) {
             showToast(
                 'error',
-                data.errors ?
+                data.errors ? (
                     <div>
-                        {
-                            data.errors.map((error: string, index: number) => (
-                                <div key={index} >
-                                    {index + 1}. {error}
-                                </div>
-                            ))
-                        }
+                        {data.errors.map((error: string, index: number) => (
+                            <div key={index}>{index + 1}. {error}</div>
+                        ))}
                     </div>
-                    : `${data.error}`
-            )
+                ) : `${data.error}`
+            );
+            return;
         }
 
         if (data.token) {
-            console.log("Received token:", data.token);
-            login(data.token)
+            login(data.token);
+
+            const prevPath = localStorage.getItem("prevPath");
+            if (prevPath) {
+                localStorage.removeItem("prevPath");
+                navigate(prevPath);
+            } else {
+                navigate("/dashboard");
+            }
         } else {
             console.error("No token received");
-        }
-
-        if (res.status === 200) {
-            const prevPath = localStorage.getItem('prevPath')
-            if (prevPath) {
-                navigate(prevPath)
-                localStorage.removeItem('prevPath')
-            } else {
-                navigate('/dashboard')
-            }
         }
     }
 
