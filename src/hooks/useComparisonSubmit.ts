@@ -1,5 +1,6 @@
 import { showToast } from "../utilities/toast"
 import { type ComparisonSubmitProps } from "../types/ComparisonSubmitProps"
+import { apiFetch } from "../utilities/api"
 
 export const useComparisonSubmit = () => {
 
@@ -40,7 +41,7 @@ export const useComparisonSubmit = () => {
             }))
 
             const addComparison = async () => {
-                const res = await fetch("/api/profile/comparison/add", {
+                const res = await apiFetch("/api/profile/comparison/add", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

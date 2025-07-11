@@ -1,11 +1,12 @@
 import { type ChangeAvatarProps } from "../types/ChangeAvatarProps";
+import { apiFetch } from "../utilities/api";
 
 export const useUpdateAvatar = () => {
     const changeAvatar = async ({ file, token, refreshProfile }: ChangeAvatarProps) => {
         const formData = new FormData();
         formData.append("profileImage", file);
 
-        const res = await fetch("/api/profile/avatar", {
+        const res = await apiFetch("/api/profile/avatar", {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${token}`,

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useProtectedProfile } from "./useProtectedProfile"
+import { apiFetch } from "../utilities/api"
 
 export const useFetchComparisons = () => {
 
@@ -10,7 +11,7 @@ export const useFetchComparisons = () => {
     useEffect(() => {
         const fetchComparisons = async () => {
             try {
-                const compRes = await fetch("/api/profile/comparisons", {
+                const compRes = await apiFetch("/api/profile/comparisons", {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer: ${token}`,

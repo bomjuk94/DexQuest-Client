@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import { showToast } from "../utilities/toast";
 import { useAuthStore } from "../stores/authStore";
+import { apiFetch } from "../utilities/api";
 
 export const useLoginUser = () => {
 
@@ -8,7 +9,7 @@ export const useLoginUser = () => {
     const navigate = useNavigate()
 
     const loginUser = async (username: string, password: string) => {
-        const res = await fetch('/api/login', {
+        const res = await apiFetch('/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

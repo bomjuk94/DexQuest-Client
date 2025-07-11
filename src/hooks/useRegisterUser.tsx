@@ -2,6 +2,7 @@ import { type RegisterUserProps } from "../types/RegisterUserProps";
 import { showToast } from "../utilities/toast";
 import { useAuthStore } from "../stores/authStore";
 import { useNavigate } from "react-router";
+import { apiFetch } from "../utilities/api";
 
 export const useRegisterUser = () => {
 
@@ -23,7 +24,7 @@ export const useRegisterUser = () => {
         }
 
 
-        const res = await fetch('/api/register', {
+        const res = await apiFetch('/api/register', {
             method: 'POST',
             body: formData,
         });

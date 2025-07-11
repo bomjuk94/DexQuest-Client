@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useProtectedProfile } from "./useProtectedProfile";
 import type { Pokemon } from "../types/models";
 import { useFavouritesStore } from "../stores/favouritesStore";
+import { apiFetch } from "../utilities/api";
 
 export const useFetchFavourites = () => {
     const { token } = useProtectedProfile()
@@ -14,7 +15,7 @@ export const useFetchFavourites = () => {
         try {
             if (!token) return
             const fetchFavourites = async () => {
-                const res1 = await fetch('/api/profile/favourites', {
+                const res1 = await apiFetch('/api/profile/favourites', {
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`
@@ -23,7 +24,7 @@ export const useFetchFavourites = () => {
 
                 const data = await res1.json()
 
-                const res2 = await fetch('/api/pokemon/list', {
+                const res2 = await apiFetch('/api/pokemon/list', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

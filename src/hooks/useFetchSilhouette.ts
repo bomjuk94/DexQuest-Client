@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useProtectedProfile } from './useProtectedProfile'
+import { apiFetch } from '../utilities/api';
 
 export const useFetchSilhouette = () => {
 
@@ -13,7 +14,7 @@ export const useFetchSilhouette = () => {
     useEffect(() => {
         try {
             const fetchSilhouette = async () => {
-                const silRes = await fetch("/api/profile/silhouette", {
+                const silRes = await apiFetch("/api/profile/silhouette", {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer: ${token}`,

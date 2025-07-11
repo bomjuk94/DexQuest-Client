@@ -1,5 +1,6 @@
 import { showToast } from "../utilities/toast"
 import { type SaveProfileInfoProps } from "../types/SaveProfileInfoProps"
+import { apiFetch } from "../utilities/api"
 
 export const useUpdateProfileInfo = () => {
     const saveProfileInfo = async ({
@@ -47,7 +48,7 @@ export const useUpdateProfileInfo = () => {
         setErrors(newErrors)
 
         if (newErrors.length === 0 && Object.keys(updatePayload).length > 0) {
-            const res = await fetch('/api/profile/auth', {
+            const res = await apiFetch('/api/profile/auth', {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${token}`,

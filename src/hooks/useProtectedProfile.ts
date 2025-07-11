@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuthStore } from "../stores/authStore";
 import type { Profile } from "../types/models";
+import { apiFetch } from "../utilities/api";
 
 export const useProtectedProfile = () => {
     const { isAuthenticated, wasLoggedOut, clearLogoutFlag } = useAuthStore();
@@ -22,7 +23,7 @@ export const useProtectedProfile = () => {
         }
 
         try {
-            const res = await fetch("/api/profile", {
+            const res = await apiFetch("/api/profile", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Cache-Control": "no-cache",

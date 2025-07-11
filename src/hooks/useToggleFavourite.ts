@@ -1,5 +1,6 @@
 import { showToast } from "../utilities/toast"
 import { type ToggleFavouriteProps } from "../types/ToggleFavouriteProps"
+import { apiFetch } from "../utilities/api"
 
 export const useToggleFavourite = () => {
 
@@ -22,7 +23,7 @@ export const useToggleFavourite = () => {
 
             const removeFavouritePokemon = async () => {
                 try {
-                    const res = await fetch("/api/profile/favourites/remove", {
+                    const res = await apiFetch("/api/profile/favourites/remove", {
                         method: "PUT",
                         headers: {
                             'Content-Type': 'application/json',
@@ -41,7 +42,7 @@ export const useToggleFavourite = () => {
         } else {
             const addFavouritePokemon = async () => {
                 try {
-                    const res = await fetch("/api/profile/favourites/add", {
+                    const res = await apiFetch("/api/profile/favourites/add", {
                         method: "POST",
                         headers: {
                             'Content-Type': 'application/json',

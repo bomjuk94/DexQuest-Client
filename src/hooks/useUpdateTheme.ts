@@ -2,6 +2,7 @@ import { showToast } from "../utilities/toast"
 import { type ColourSchemeKey } from "../types/models"
 import { colorSchemes } from "../utilities/colours"
 import { type ChangeThemeProps } from "../types/ChangeThemeProps"
+import { apiFetch } from "../utilities/api"
 
 export const useUpdateTheme = () => {
     const changeTheme = async ({
@@ -24,7 +25,7 @@ export const useUpdateTheme = () => {
             document.documentElement.style.setProperty(`--color-${key}`, value);
         });
 
-        const res = await fetch('/api/profile/theme', {
+        const res = await apiFetch('/api/profile/theme', {
             method: 'PUT',
             headers: {
                 Authorization: `Bearer ${token}`,

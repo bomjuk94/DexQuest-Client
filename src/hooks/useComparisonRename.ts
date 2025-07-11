@@ -1,5 +1,6 @@
 import { showToast } from "../utilities/toast";
 import { type RenameComparisonProps } from "../types/RenameComparisonProps";
+import { apiFetch } from "../utilities/api";
 
 export const useComparisonRename = () => {
 
@@ -18,7 +19,7 @@ export const useComparisonRename = () => {
             return showToast('error', 'Need a comparison name');
         }
 
-        const res = await fetch('api/profile/comparisons/name/update', {
+        const res = await apiFetch('/api/profile/comparisons/name/update', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

@@ -1,5 +1,6 @@
 import type { RenameTeamProps } from "../types/RenameTeamProps";
 import { showToast } from "../utilities/toast";
+import { apiFetch } from "../utilities/api";
 
 export const useTeamRename = () => {
     const renameTeam = async ({
@@ -17,7 +18,7 @@ export const useTeamRename = () => {
             return showToast('error', 'Need a team name');
         }
 
-        const res = await fetch('/api/profile/teams/name/update', {
+        const res = await apiFetch('/api/profile/teams/name/update', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Pokemon } from "../types/models";
+import { apiFetch } from "../utilities/api";
 
 export function useFetchAllPokemon() {
     const [pokemonList, setPokemonList] = useState<Pokemon[] | undefined>([]);
@@ -10,7 +11,7 @@ export function useFetchAllPokemon() {
     useEffect(() => {
         try {
             const fetchPokemon = async () => {
-                const res = await fetch('/api/pokemon/light')
+                const res = await apiFetch('/api/pokemon/light')
 
                 if (res.status === 200) {
                     const data = await res.json()

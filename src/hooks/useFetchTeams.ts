@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { type Teams } from "../types/models";
 import { useProtectedProfile } from "./useProtectedProfile";
+import { apiFetch } from "../utilities/api";
 
 export const useFetchTeams = (
     setTeams: React.Dispatch<React.SetStateAction<Teams | null>>,
@@ -18,7 +19,7 @@ export const useFetchTeams = (
             }
 
             try {
-                const res = await fetch('/api/profile/teams', {
+                const res = await apiFetch('/api/profile/teams', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

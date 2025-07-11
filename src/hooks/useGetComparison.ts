@@ -1,4 +1,5 @@
 import { type CompareObj } from "../stores/pokemonComparisonStore";
+import { apiFetch } from "../utilities/api";
 
 export const useGetComparison = (
 
@@ -18,7 +19,7 @@ export const useGetComparison = (
             }
 
             try {
-                const res = await fetch(`/api/profile/comparisons/${comparisonId}`, {
+                const res = await apiFetch(`/api/profile/comparisons/${comparisonId}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -35,7 +36,7 @@ export const useGetComparison = (
                     const comparisons: number[] = data.comparison.comparison.map(
                         (poke) => poke.id
                     )
-                    const res2 = await fetch('/api/pokemon/list', {
+                    const res2 = await apiFetch('/api/pokemon/list', {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",

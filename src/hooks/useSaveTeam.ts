@@ -1,5 +1,6 @@
 import { type SaveTeamProps } from "../types/SaveTeamProps"
 import { showToast } from "../utilities/toast"
+import { apiFetch } from "../utilities/api"
 
 export const useSaveTeam = () => {
     const saveTeam = async ({
@@ -28,7 +29,7 @@ export const useSaveTeam = () => {
             showToast('error', 'Need a team name')
         }
 
-        const res = await fetch('api/profile/teams/add', {
+        const res = await apiFetch('/api/profile/teams/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

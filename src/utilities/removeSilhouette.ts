@@ -1,11 +1,12 @@
 import type { Silhouette } from "../types/models/Silhouette"
+import { apiFetch } from "./api"
 
 export const removeSilhouette = async (silhouetteToRemove: Silhouette, token: string, silhouettes: Silhouette[]) => {
     const filtered = silhouettes?.filter((s) => s._id !== silhouetteToRemove._id)
 
     try {
         console.log('starting fetch')
-        await fetch('/api/profile/silhouettes/remove', {
+        await apiFetch('/api/profile/silhouettes/remove', {
             'method': 'PUT',
             headers: {
                 Authorization: `Bearer ${token}`,

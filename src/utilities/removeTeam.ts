@@ -1,4 +1,5 @@
 import type { Teams } from "../types/models";
+import { apiFetch } from "./api";
 
 export const removeTeam = async (teamToRemove: Teams[number], token: string, teams: Teams) => {
 
@@ -8,7 +9,7 @@ export const removeTeam = async (teamToRemove: Teams[number], token: string, tea
 
     try {
         console.log('starting fetch')
-        await fetch('/api/profile/teams/remove', {
+        await apiFetch('/api/profile/teams/remove', {
             'method': 'PUT',
             headers: {
                 Authorization: `Bearer ${token}`,

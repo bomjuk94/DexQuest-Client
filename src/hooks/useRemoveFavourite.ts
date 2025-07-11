@@ -1,6 +1,7 @@
 import { showToast } from "../utilities/toast"
 import { capitalizeName } from "../utilities/capitalizeName"
 import { type RemoveFavouriteProps } from "../types/RemoveFavouriteProps"
+import { apiFetch } from "../utilities/api"
 
 export const useRemoveFavourite = () => {
 
@@ -8,7 +9,7 @@ export const useRemoveFavourite = () => {
         id, name, token, setFavouritesList
     }: RemoveFavouriteProps) => {
         try {
-            const res = await fetch("/api/profile/favourites/remove", {
+            const res = await apiFetch("/api/profile/favourites/remove", {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -29,7 +30,7 @@ export const useRemoveFavourite = () => {
                     try {
                         if (!token) return
                         const fetchFavourites = async () => {
-                            const res1 = await fetch('/api/profile/favourites', {
+                            const res1 = await apiFetch('/api/profile/favourites', {
                                 headers: {
                                     'Content-Type': 'application/json',
                                     Authorization: `Bearer ${token}`
@@ -38,7 +39,7 @@ export const useRemoveFavourite = () => {
 
                             const data = await res1.json()
 
-                            const res2 = await fetch('/api/pokemon/list', {
+                            const res2 = await apiFetch('/api/pokemon/list', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',

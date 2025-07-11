@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { colorSchemes } from "../utilities/colours";
 import { useColourSchemeStore } from "../stores/colourSchemeStore";
 import type { ColourSchemeKey } from "../types/models";
+import { apiFetch } from "../utilities/api";
 
 export function useInitializeTheme(token: string | null, refreshProfile: () => void) {
     const getColourScheme = useColourSchemeStore((state) => state.getColourScheme);
@@ -22,7 +23,7 @@ export function useInitializeTheme(token: string | null, refreshProfile: () => v
         if (token) {
             const fetchColorScheme = async () => {
                 try {
-                    const res = await fetch('/api/profile/colorScheme', {
+                    const res = await apiFetch('/api/profile/colorScheme', {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',

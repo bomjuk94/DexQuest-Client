@@ -1,4 +1,5 @@
 import { useSilhouetteGameStore } from "../stores/silhouetteGame/SilhouetteGameStore"
+import { apiFetch } from "../utilities/api"
 
 type SaveProgressProps = {
     token: string,
@@ -14,7 +15,7 @@ export const useSaveSilhouetteProgress = () => {
     const { setReset } = useSilhouetteGameStore()
 
     const saveProgress = async ({ token, correctGuesses, maxRounds, setTallyScore, setGameQuit, action }: SaveProgressProps) => {
-        const res = await fetch('api/profile/silhouette/add', {
+        const res = await apiFetch('/api/profile/silhouette/add', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 import type { Comparison } from "../types/models";
+import { apiFetch } from "./api";
 
 export const removeComparison = async (comparisonToRemove: Comparison, token: string, comparisons: Comparison[]) => {
 
@@ -7,7 +8,7 @@ export const removeComparison = async (comparisonToRemove: Comparison, token: st
 
     try {
         console.log('starting fetch')
-        await fetch('/api/profile/comparisons/remove', {
+        await apiFetch('/api/profile/comparisons/remove', {
             'method': 'PUT',
             headers: {
                 Authorization: `Bearer ${token}`,
