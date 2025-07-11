@@ -4,11 +4,14 @@ import { apiFetch } from "../utilities/api";
 
 export const useIndividualPokemon = (id: string | undefined) => {
     const [pokemon, setPokemon] = useState<Pokemon | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        if (!id) return; // 🛑 Skip fetch if no ID provided
+
         const fetchInvididualPokemon = async () => {
+            setLoading(true);
             try {
                 const res = await apiFetch('/api/pokemon/individual', {
                     method: 'POST',
@@ -18,22 +21,25 @@ export const useIndividualPokemon = (id: string | undefined) => {
                     body: JSON.stringify({
                         pokeId: id,
                     })
-                })
-                if (res.status === 200) {
-                    const data = await res.json()
-                    setPokemon(data)
+                });
+
+                if (!res.ok) {
+                    const msg = await res.text();
+                    throw new Error(msg || 'Failed to fetch Pokémon');
                 }
 
+                const data = await res.json();
+                setPokemon(data);
             } catch (error) {
-                setError(error)
+                setError((error as Error).message);
             } finally {
-                setLoading(false)
+                setLoading(false);
             }
-        }
+        };
 
-        fetchInvididualPokemon()
+        fetchInvididualPokemon();
 
-    }, [id])
+    }, [id]);
 
-    return { pokemon, loading, error }
-}
+    return { pokemon, loading, error };
+};
