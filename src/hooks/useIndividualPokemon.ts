@@ -6,6 +6,7 @@ export const useIndividualPokemon = (id: string | undefined) => {
     const [pokemon, setPokemon] = useState<Pokemon | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+    console.log('sldkfj')
 
     useEffect(() => {
         if (!id) return; // 🛑 Skip fetch if no ID provided
