@@ -28,14 +28,22 @@ const Comparison = () => {
     }
 
     useEffect(() => {
+        const comparisonId = searchParams.get("id");
+
+        if (!comparisonId || !token) {
+            setLoading(false);
+            return;
+        }
+
         getComparison(
             searchParams,
             token,
             setLoading,
             comparisonNameRef,
-            setComparison,
-        )
-    }, [searchParams, token, setComparison])
+            setComparison
+        );
+    }, [searchParams, token, setComparison]);
+
 
     const handleComparisonSubmit = (e: React.FormEvent) => {
         submitComparison({
