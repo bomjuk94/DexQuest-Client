@@ -3,9 +3,10 @@ import { useLocation, Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     const { isAuthenticated } = useAuthStore();
+    const token = localStorage.getItem("token");
     const location = useLocation();
 
-    if (!isAuthenticated) {
+    if (!token || !isAuthenticated) {
         if (!["/login", "/register"].includes(location.pathname)) {
             localStorage.setItem("prevPath", location.pathname);
         }
