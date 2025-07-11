@@ -9,22 +9,27 @@ export function useFetchAllPokemon() {
     const [paginationReady, setPaginationReady] = useState(false)
 
     useEffect(() => {
-        try {
-            const fetchPokemon = async () => {
-                const res = await apiFetch('/api/pokemon/light')
+        const fetchPokemon = async () => {
+            try {
+                const res = await apiFetch('/api/pokemon/light');
 
                 if (res.status === 200) {
-                    const data = await res.json()
-                    setPokemonList(data)
-                    setPaginationReady(true)
-                    setLoading(false)
+                    const data = await res.json();
+                    setPokemonList(data);
+                    setPaginationReady(true);
+                    setLoading(false);
+                } else {
+                    const errorText = await res.text();
+                    throw new Error(errorText || 'Failed to fetch Pokémon');
                 }
+            } catch (error) {
+                setError((error as Error).message);
             }
-            fetchPokemon()
-        } catch (error) {
-            setError(error)
-        }
-    }, [])
+        };
+
+        fetchPokemon();
+    }, []);
+
 
     return { pokemonList, loading, error, paginationReady, setLoading };
 }

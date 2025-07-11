@@ -35,7 +35,7 @@ createRoot(document.getElementById('root')!).render(
         <Header />
 
         {/* 🛠️ Here's the important wrapper */}
-        <div className="flex-grow">
+        <div className="flex-grow bg-primary">
           <Routes>
             <Route path='/' element={<App />} />
             <Route path='/pokemon' element={<Navigate to="/" replace />} />
