@@ -3,7 +3,7 @@ const BASE_URL = import.meta.env.VITE_API_URL;
 export const apiFetch = async (
     path: string,
     options: RequestInit = {}
-) => {
+): Promise<Response> => {
     const res = await fetch(`${BASE_URL}${path}`, {
         credentials: 'include',
         ...options
@@ -14,5 +14,5 @@ export const apiFetch = async (
         throw new Error(error || 'API error');
     }
 
-    return res.json();
+    return res;
 };
