@@ -1,0 +1,315 @@
+@import "tailwindcss";
+
+@theme {
+    --color-brand-green: #008000;
+    --color-brand-yellow: #ffff00;
+    --color-brand-gray: #888888;
+    --color-brand-light-gray: #d3d3d3;
+    --color-brand-antique-white: #faebd7;
+    --color-brand-dark-black: #1e1e2e;
+    --color-brand-dark-highlight: #ffcc00;
+    --color-brand-dark-fire: #ff3d3d;
+    --color-brand-dark-water: #00bfff;
+    --color-brand-dark-psychic: #7c3aed;
+    --color-brand-dark-aqua: #4fc3f7;
+    --color-brand-rouge-dark: #40091c;
+    --color-brand-dim-gray: #5e5e5e;
+    --container-desktop: 1000px;
+    --container-individual: 800px;
+    --container-form: 500px;
+    --container-100: 100px;
+    --container-thirty: 30px;
+    --container-35: 35px;
+    --spacing-fifty: 50px;
+    --spacing-one-twelve: 112px;
+    --spacing-one-fifty: 150px;
+    --spacing-two-hundred: 200px;
+    --spacing-two-twenty: 220px;
+    --spacing-two-fourty-three: 243px;
+    --spacing-four-hundred: 400px;
+    --spacing-90vw: 90vw;
+    --spacing-100vw: 100vw;
+    --spacing-sprite: 110px;
+    --spacing-modal-drop-lg: 25%;
+    --breakpoint-lg: 900px;
+    --breakpoint-sm: 768px;
+    --breakpoint-phone: 500px;
+    --spacing-third: 33.33%;
+    --spacing-fourth: 25%;
+    --spacing-sixty-percent: 60%;
+    --spacing-fourty-percent: 40%;
+    --spacing-fifty-percent: 50%;
+    --spacing-ninety-five-percent: 95%;
+}
+:root {
+  --color-primary: #000;
+}
+
+/* Colour Schemes  Start*/
+.bg-primary {
+  background-color: var(--color-background);
+}
+.bg-primary-nav {
+  background-color: var(--color-backgroundNav);
+}
+.bg-secondary {
+  background-color: var(--color-backgroundSecondary);
+}
+.bg-card {
+  background-color: var(--color-backgroundCard);
+}
+.border-primary {
+  border-color: var(--color-primary);
+}
+.border-top-transparent {
+  border-top-color: transparent;
+}
+.input-bkgd {
+  background-color: var(--color-inputBackground);
+}
+.text-primary {
+  color: var(--color-text);
+}
+.text-secondary {
+  color: var(--color-textSecondary);
+}
+.text-input {
+  color: var(--color-inputText);
+}
+.btn-bkgd {
+  background-color: var(--color-btnBackground);
+}
+.btn-bkgd-secondary {
+  background-color: var(--color-btnBackgroundSecondary);
+}
+.btn-bkgd-tertiary {
+  background-color: var(--color-btnBackgroundTertiary);
+}
+.btn-added-bkgd {
+  background-color: var(--color-btnAddedBackground);
+}
+.btn-text {
+  color: var(--color-btnText);
+}
+.img-bkgd {
+  color: var(--color-imgBackground);
+  color: #0080008d;
+}
+.text-link {
+  color: var(--color-textLink);
+}
+.card-text {
+  color: var(--color-cardText);
+}
+.dashboard-card-bkgd {
+  background-color: var(--color-dashboardCardBackground);
+}
+/* Colour Schemes  End*/
+
+.pokeball {
+box-sizing: border-box;
+--pokeball-size: 150px;
+--pokeball-inner-size: 48px;
+--pokeball-border-size: 6px;
+
+--before-diameter: var(--pokeball-inner-size);
+--after-diameter: calc(var(--before-diameter) - (var(--pokeball-border-size) * 3));
+
+border: var(--pokeball-border-size) solid #262122;
+width: var(--pokeball-size);
+height: var(--pokeball-size);
+border-radius: 100%;
+margin: 0 auto;
+position: relative;
+
+background: linear-gradient(
+    150deg,
+    #BA0C2F 0%,
+    #BA0C2F 44%,
+    #262122 44%,
+    #262122 56%,
+    #fff 56%,
+    #fff 100%
+);
+}
+
+.pokeball:before,
+.pokeball:after {
+content: " ";
+border-radius: 100%;
+display: block;
+position: absolute;
+}
+
+.pokeball:before {
+width: var(--before-diameter);
+height: var(--before-diameter);
+top: calc(50% - var(--before-diameter) / 2);
+left: calc(50% - var(--before-diameter) / 2);
+background: #262122;
+}
+
+.pokeball:after {
+width: var(--after-diameter);
+height: var(--after-diameter);
+
+/* top: calc(50% - (((var(--before-diameter) - (var(--pokeball-border-size) * 3)) / 2) + var(--pokeball-border-size))); */
+top: 55px;
+/* left: calc(50% - (((var(--before-diameter) - (var(--pokeball-border-size) * 3)) / 2) + var(--pokeball-border-size))); */
+left: 54px;
+
+background: rgb(255, 255, 255);
+border: double var(--pokeball-border-size) #262122;
+}
+
+.pokeball-animated {
+animation-duration: 1s;
+animation-fill-mode: both;
+animation-iteration-count: infinite;
+animation-name: shake;
+}
+
+@keyframes shake {
+from {
+    transform: none;
+}
+
+20% {
+    transform: translate3d(-20%, 0, 0) rotate3d(0, 0, 1, -10deg);
+}
+
+40% {
+    transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 5deg);
+}
+
+50% {
+    transform: translate3d(-10%, 0, 0) rotate3d(0, 0, 1, -10deg);
+}
+
+60% {
+    transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 5deg);
+}
+
+to {
+    transform: none;
+}
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* React Switch */
+.switch-icon svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.react-switch-bg div:nth-child(2) svg path {
+    fill: #ffcc00;
+}
+/* Gameboy screen flicker */
+@keyframes flicker {
+    0%, 100% {
+      opacity: 0.06;
+    }
+    50% {
+      opacity: 0.12;
+    }
+  }
+  
+  .animate-flicker {
+    animation: flicker 1.4s infinite;
+  }
+
+/* Gameboy power off flicker */
+/* index.css or global CSS */
+@keyframes gameboyPowerOff {
+    0% {
+      opacity: 1;
+      transform: scaleY(1);
+      filter: brightness(1);
+    }
+    20% {
+      opacity: 1;
+      filter: brightness(2);
+    }
+    60% {
+      transform: scaleY(0.1);
+      filter: brightness(3) contrast(2);
+    }
+    100% {
+      opacity: 0;
+      transform: scaleY(0);
+      filter: brightness(0);
+    }
+  }
+  
+  .gameboy-shutdown {
+    animation: gameboyPowerOff 200ms ease-in forwards;
+    transform-origin: center;
+    background: white;
+    z-index: 50;
+    position: absolute;
+    inset: 0;
+  }
+  
+/* Game start up */
+
+.boot-screen {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .boot-logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: 'PressStart2P', monospace;
+    background: linear-gradient(270deg, 
+      #ff004f, #ff7c00, #fcd700, #00ff85, #00cfff, #5f00ff, #ff00e5, #ff004f);
+    background-size: 1600% 1600%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: color-wave 3s linear infinite;
+    opacity: 0;
+    animation: fade-in 1s ease-in-out 0.2s forwards, color-wave 3s linear infinite;
+  }
+  
+  .nintendo-text {
+    font-family: 'PressStart2P', monospace;
+    font-size: 0.9rem;
+    color: black;
+    margin-top: 1rem;
+    opacity: 0;
+    animation: fade-in 1s ease-in-out 1s forwards;
+  }
+  
+  @keyframes color-wave {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  @keyframes fade-in {
+    to { opacity: 1; }
+  }
+
+  /* Typewriter cursor */
+
+  .typewriter-cursor {
+    display: inline-block;
+    margin-left: 2px;
+    animation: blink 1s step-start infinite;
+  }
+  
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  

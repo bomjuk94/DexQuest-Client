@@ -1,0 +1,71 @@
+import { type CompareObj } from "../stores/pokemonComparisonStore";
+
+export const useGetComparison = (
+
+) => {
+    const getComparison = (
+        searchParams: URLSearchParams,
+        token: string | null,
+        setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+        comparisonNameRef: React.RefObject<HTMLInputElement | null>,
+        setComparison: (list: CompareObj[]) => void,
+    ) => {
+        (async () => {
+            const comparisonId = searchParams.get("id");
+            if (!comparisonId) {
+                setLoading(false)
+                return
+            }
+
+            try {
+                const res = await fetch(`/api/profile/comparisons/${comparisonId}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+
+                const data = await res.json()
+
+                if (
+                    data?.comparison?.comparison &&
+                    Array.isArray(data.comparison.comparison)
+                ) {
+                    const comparisons: number[] = data.comparison.comparison.map(
+                        (poke) => poke.id
+                    )
+                    const res2 = await fetch('/api/pokemon/list', {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                        body: JSON.stringify({
+                            ids: comparisons,
+                        })
+                    })
+
+                    if (res2.ok) {
+                        const data2 = await res2.json()
+                        setComparison(data2)
+                    }
+
+                    if (comparisonNameRef.current) {
+                        comparisonNameRef.current.value = data.comparison.name
+                    }
+                } else {
+                    console.warn("Invalid comparison data format:", data)
+                }
+            } catch (error) {
+                console.error("Failed to fetch saved comparison:", error)
+            } finally {
+                setTimeout(() => {
+                    setLoading(false)
+                }, 200)
+            }
+        })()
+    }
+
+    return { getComparison }
+}

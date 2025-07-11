@@ -1,0 +1,6 @@
+export * from './Pokemon'
+export * from './User'
+export * from './Colours'
+export * from './Teams'
+export * from './Silhouette'
+export * from './Comparison'
