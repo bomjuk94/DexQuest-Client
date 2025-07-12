@@ -4,7 +4,7 @@ import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
 const InfiniteScroll = () => {
     const [items, setItems] = useState(Array.from({ length: 20 }));
     const [hasMore, setHasMore] = useState(true);
-    const loader = useRef(null);
+    const loader = useRef<HTMLElement | null>(null);
 
     const fetchMoreData = () => {
         if (items.length >= 100) {

@@ -43,6 +43,9 @@ export type EvolvesTo = {
 export type EvolutionChain = {
     chain: EvolvesTo
 }
+type SpriteImage = {
+    front_default: string | null;
+};
 export type Pokemon = {
     id: number,
     name: string,
@@ -51,14 +54,12 @@ export type Pokemon = {
     defense: number,
     weight: number,
     type: string,
-    other: OtherSprites
     sprites: {
         other?: {
-            'official-artwork'?: {
-                front_default: string | null
-            }
-        }
-    },
+            "official-artwork"?: SpriteImage;
+        };
+        "official-artwork"?: SpriteImage;
+    };
     stats: StatDetails[],
     types: PokemonType[],
     abilities: PokemonAbilities[],
@@ -97,11 +98,13 @@ export type StatVisualizerProps = {
     bgColour?: string,
     bordercolor?: string,
 }
-export type GamePhasesTypeKey = 'start' | 'booting' | 'tally' | 'quit'
-export type GamePhasesTypeVal = 'start started' | 'start ended' | 'booting started' | 'booting ended' | 'tally started' | 'tally ended' | 'quit started' | 'quit ended'
+type Phase = 'start' | 'booting' | 'tally' | 'quit';
+type PhaseStatus = 'started' | 'ended';
+
+export type GamePhasesTypeVal = `${Phase} ${PhaseStatus}`;
+
 export type GamePhasesType = {
-    start: { val: string },
-    booting: { val: string },
-    tally: { val: string },
-    quit: { val: string },
-}
+    [K in Phase]: {
+        val: `${K} started` | `${K} ended`;
+    };
+};

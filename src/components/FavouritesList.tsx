@@ -9,10 +9,15 @@ const FavouritesList = ({ favourite, setFavouritesList, }: FavouritesListProps) 
     const { token } = useProtectedProfile()
     const { handleFavouriteRemove } = useFavouriteRemoveHandler()
 
+    const imageSrc =
+        typeof favourite.sprites["official-artwork"] === "string"
+            ? favourite.sprites["official-artwork"]
+            : favourite.sprites.other?.["official-artwork"]?.front_default ?? "/assets/fallback.png";
+
     return (
         <li className='flex flex-col items-center gap-1.5'>
             <img
-                src={favourite?.sprites?.front_default}
+                src={imageSrc}
                 alt={capitalizeName(favourite.name)}
                 className='w-24 object-contain'
             />

@@ -14,11 +14,11 @@ const ComparisonsList = ({ comparisons, comparison, comparisonNameInputs, setCom
     const navigate = useNavigate()
 
     const formRef = useRef(null)
-    const comparisonNameRef = useRef<null | string>(null)
+    const comparisonNameRef = useRef<HTMLInputElement | null>(null);
     const { handleComparisonRename } = useComparisonRenameHandler()
 
     const handleComparisonsRemove = async (comparison: Comparison) => {
-        if (comparisons) {
+        if (comparisons && token) {
             const updated = await removeComparison(comparison, token, comparisons)
             setComparisons(updated || [])
         }
@@ -26,9 +26,12 @@ const ComparisonsList = ({ comparisons, comparison, comparisonNameInputs, setCom
 
     const handleViewComparison = (id: string) => {
         if (id) {
-            navigate(`/pokemon-comparison?id=${id}`)
+            navigate(`/dexquest-comparison?id=${id}`)
         }
     }
+
+    console.log('comparison', comparison.comparison);
+
 
     return (
         <div>

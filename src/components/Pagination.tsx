@@ -1,4 +1,3 @@
-import React from 'react'
 import { type PaginationProps } from '../types/PaginationProps';
 
 const Pagination = ({ totalPages, setCurrentPage, currentPage }: PaginationProps) => {

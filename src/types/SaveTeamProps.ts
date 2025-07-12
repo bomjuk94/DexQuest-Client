@@ -1,3 +1,4 @@
+import { type RefObject } from "react"
 import { type Team } from "./models"
 
 export interface SaveTeamProps {
@@ -5,6 +6,6 @@ export interface SaveTeamProps {
     token: string | null,
     teamLength: number,
     team: Team[],
-    teamNameRef: React.RefObject<string | null>,
+    teamNameRef: RefObject<HTMLInputElement | null>,
     formRef: React.RefObject<null>
 }

@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import type { Pokemon } from "../types/models";
 import { apiFetch } from "../utilities/api";
 
-export const useIndividualPokemon = (id: string | undefined) => {
+export const useIndividualPokemon = (id: number | undefined) => {
     const [pokemon, setPokemon] = useState<Pokemon | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     console.log('sldkfj')
 
     useEffect(() => {
-        if (!id) return; // 🛑 Skip fetch if no ID provided
+        if (!id) return;
 
         const fetchInvididualPokemon = async () => {
             setLoading(true);

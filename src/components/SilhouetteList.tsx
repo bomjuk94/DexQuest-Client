@@ -8,7 +8,7 @@ const SilhouetteList = ({ silhouettes, silhouette, silhouettePage, setSilhouette
     const { token } = useProtectedProfile()
 
     const handleSilhouetteRemove = async () => {
-        if (silhouettes) {
+        if (silhouettes && token) {
             const updated = await removeSilhouette(silhouette, token, silhouettes)
             setSilhouettes(updated || [])
         }

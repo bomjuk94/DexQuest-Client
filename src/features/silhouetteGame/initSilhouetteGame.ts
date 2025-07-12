@@ -8,7 +8,8 @@ export const initializeGame = ({
     getRandomPoke,
     removeRandomPoke,
     addToUtilizedStore,
-    setRandomPoke
+    setRandomPoke,
+
 }: InitializeGameProps) => {
     if (initialized.current || pokemonList.length === 0 || nextPokemon) return null;
 
@@ -20,7 +21,9 @@ export const initializeGame = ({
 
     removeRandomPoke(poke.id);
     addToUtilizedStore(poke.id);
-    setRandomPoke(poke);
+    if (poke) {
+        setRandomPoke(poke);
+    }
 
     return poke;
 };

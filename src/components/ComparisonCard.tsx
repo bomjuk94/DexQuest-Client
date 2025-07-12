@@ -45,13 +45,24 @@ const ComparisonCard = ({ poke }: ComparisonCardProps) => {
         </div>
     )
 
+    const artwork =
+        typeof pokemon.sprites["official-artwork"] === "string"
+            ? pokemon.sprites["official-artwork"]
+            : pokemon.sprites.other?.["official-artwork"]?.front_default;
+
+    const imageSrc = artwork ?? "/assets/fallback.png";
+
     const { statLabels, chartData } = generateChartData(pokemon)
 
     return (
         <div className='flex flex-col phone:grid phone:grid-cols-[45%_55%] phone:gap-2.5'>
             <div className='bg-secondary rounded-xl p-3 min-h-two-hundred'>
                 <div className='bg-brand-antique-white w-full h-full flex justify-center items-center rounded-sm relative'>
-                    <img src={pokemon?.sprites?.["official-artwork"]} alt={capitalizeName(pokemon.name)} className='object-contain' />
+                    <img
+                        src={imageSrc}
+                        alt={capitalizeName(pokemon.name)}
+                        className="object-contain"
+                    />
                     <AddToFavourite pokemon={pokemon} />
                 </div>
             </div>

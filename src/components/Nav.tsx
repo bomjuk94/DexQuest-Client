@@ -1,4 +1,3 @@
-// Nav.tsx
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation, NavLink } from 'react-router'
 import { navLinks } from '../utilities/constants.tsx'
@@ -35,7 +34,6 @@ const Nav = () => {
     const handleNavClick = (
         e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
         linkName: string,
-        path: string
     ) => {
         setShowDock(false)
         setExpanded(false)
@@ -48,7 +46,6 @@ const Nav = () => {
 
     return (
         <>
-            {/* Pokéball toggle */}
             <button
                 onClick={() => {
                     setShowDock(!showDock)
@@ -64,7 +61,6 @@ const Nav = () => {
                 )}
             </button>
 
-            {/* Dock Nav */}
             {showDock && (
                 <nav
                     style={{ left: `${leftOffset}px` }}
@@ -76,7 +72,6 @@ const Nav = () => {
             bg-green-500/10 shadow-[0_0_8px_2px_rgba(255,255,255,0.4)] rounded-md p-4
           `}
                 >
-                    {/* Expand/Collapse Arrow */}
                     <button
                         onClick={() => setExpanded(!expanded)}
                         className={`
@@ -89,7 +84,6 @@ const Nav = () => {
                         </div>
                     </button>
 
-                    {/* Links */}
                     {navLinks.map(({ path, name, icon }) => {
                         const isActive = location.pathname === path
 
@@ -97,7 +91,7 @@ const Nav = () => {
                             <div key={path} className="group relative flex items-center">
                                 <NavLink
                                     to={path}
-                                    onClick={(e) => handleNavClick(e, name, path)}
+                                    onClick={(e) => handleNavClick(e, name)}
                                     className={`
     group
     flex items-center justify-center gap-3 w-full

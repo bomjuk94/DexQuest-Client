@@ -11,7 +11,7 @@ import { useIsTeamBuilder } from '../hooks/useIsTeamBuilder'
 import { useIsPokemonComparison } from '../hooks/useIsPokemonComparison';
 import { useComparisonAdd } from '../hooks/useComparisonAdd'
 
-const PokemonCard = ({ pokemon, context = 'home' }: PokemonPreviewProps & PokemonCardProps) => {
+const PokemonCard = ({ pokemon, context = 'home' }: Pokemon & PokemonCardProps & PokemonPreviewProps) => {
 
     const { addToComparison } = usePokemonComparisonStore()
     const [showDetails, setShowDetails] = useState(false)
@@ -33,6 +33,13 @@ const PokemonCard = ({ pokemon, context = 'home' }: PokemonPreviewProps & Pokemo
         addComparePokemon(pokemon, addToComparison)
     }
 
+    const artwork =
+        typeof pokemon.sprites["official-artwork"] === "string"
+            ? pokemon.sprites["official-artwork"]
+            : pokemon.sprites.other?.["official-artwork"]?.front_default;
+
+    const imageSrc = typeof artwork === "string" ? artwork : undefined;
+
     return (
         <div
             className={`relative border-2 rounded-xl p-2 transition-all snap-center shrink-0 ${currentClass} border-primary shadow-md`}
@@ -41,7 +48,7 @@ const PokemonCard = ({ pokemon, context = 'home' }: PokemonPreviewProps & Pokemo
             style={{ transition: 'background-color 0.3s ease' }}
         >
             <img
-                src={pokemon.sprites ? pokemon.sprites.front_default : pokemon.image}
+                src={imageSrc}
                 alt={pokemon.name}
                 className="w-sprite h-sprite bg-brand-antique-white"
                 width={96}

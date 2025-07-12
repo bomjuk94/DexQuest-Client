@@ -56,7 +56,7 @@ const PokemonList = ({ pokemonList }: PokemonListProps) => {
                     <p>No Results...</p>
                 ) : (
                     currentItems.map((pokemon) => (
-                        <PokemonCard pokemon={pokemon} key={pokemon.name} borderColor='border-transparent' />
+                        <PokemonCard pokemon={pokemon} key={pokemon.name} />
                     ))
                 )}
             </section>

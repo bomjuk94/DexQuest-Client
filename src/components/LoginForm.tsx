@@ -5,7 +5,7 @@ import { useLoginSubmitHandler } from '../hooks/useLoginSubmitHandler'
 
 const LoginForm = () => {
 
-    const userNameRef = useRef<HTMLInputElement>(null)
+    const userNameRef = useRef<HTMLInputElement | null>(null)
     const passwordRef = useRef<HTMLInputElement>(null)
     const formRef = useRef<HTMLFormElement>(null)
     const [errors, setErrors] = useState<string[]>([])
@@ -53,7 +53,7 @@ const LoginForm = () => {
                     className='border-2 py-1.5 px-2.5 rounded-sm input-bkgd border-primary w-full'
                 />
             </div>
-            <RegisterCTA userNameRef={userNameRef} passwordRef={passwordRef} />
+            <RegisterCTA />
 
             <input
                 type="submit"

@@ -5,5 +5,5 @@ export interface RenameComparisonProps {
     comparisonNameInputs: Record<string, string>
     comparison: Comparison
     token: string | null
-    setComparisons: React.Dispatch<React.SetStateAction<[]>>
+    setComparisons: React.Dispatch<React.SetStateAction<Comparison[]>>,
 }

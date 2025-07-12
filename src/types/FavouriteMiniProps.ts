@@ -1,7 +1,7 @@
 import { type Pokemon } from "./models";
 
 export interface FavouritesMiniProps {
-    favouritesList: Pokemon[] | undefined,
+    favouritesList: Pokemon[],
     favouritesCommonTypes: string[],
     favouritesSearchTerm: string,
     setFavouritesSearchTerm: React.Dispatch<React.SetStateAction<string>>,
@@ -9,7 +9,7 @@ export interface FavouritesMiniProps {
     favouritesTypes: string[],
     currentFavourites: Pokemon[],
     favouritesTotalPages: number,
-    setFavouritesList: React.Dispatch<React.SetStateAction<Pokemon[] | undefined>>,
+    setFavouritesList: React.Dispatch<React.SetStateAction<Pokemon[]>>,
     goToPrevFavouritesPage: () => void,
     favouritesPage: number,
     goToNextFavouritesPage: () => void,

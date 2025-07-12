@@ -1,9 +1,9 @@
 export type Comparison = {
-    id: string
+    _id: string
     name: string
     comparison: {
         id: string,
         name: string,
         image: string,
-    }
+    }[]
 }

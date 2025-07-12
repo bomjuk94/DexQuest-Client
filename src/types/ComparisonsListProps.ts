@@ -6,5 +6,5 @@ export interface ComparisonsListProps {
     comparison: Comparison,
     comparisonNameInputs: Record<string, string>,
     setComparisonNameInputs: React.Dispatch<SetStateAction<Record<string, string>>>,
-    setComparisons: React.Dispatch<SetStateAction<[]>>,
+    setComparisons: React.Dispatch<React.SetStateAction<Comparison[]>>,
 }

@@ -9,7 +9,7 @@ const SaveTeam = () => {
     const teamLength = team.length
     const { token } = useProtectedProfile()
     const formRef = useRef(null)
-    const teamNameRef = useRef<null | string>(null)
+    const teamNameRef = useRef<HTMLInputElement | null>(null);
     const { saveTeam } = useSaveTeam()
 
     const handleSaveTeam = async (e: React.FormEvent) => {

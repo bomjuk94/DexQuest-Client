@@ -4,7 +4,6 @@ import { useFavouritesStore } from '../stores/favouritesStore';
 import { useIsFavourite } from '../hooks/useIsFavourite';
 import type { PokemonPreviewProps } from '../types/models/Pokemon';
 import { useProtectedProfile } from '../hooks/useProtectedProfile';
-// import { showToast } from '../utilities/toast';
 import { useToggleFavourite } from "../hooks/useToggleFavourite";
 
 const AddToFavourite = ({ pokemon }: PokemonPreviewProps) => {

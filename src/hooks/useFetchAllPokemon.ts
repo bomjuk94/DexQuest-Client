@@ -3,7 +3,7 @@ import type { Pokemon } from "../types/models";
 import { apiFetch } from "../utilities/api";
 
 export function useFetchAllPokemon() {
-    const [pokemonList, setPokemonList] = useState<Pokemon[] | undefined>([]);
+    const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null)
     const [paginationReady, setPaginationReady] = useState(false)

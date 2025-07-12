@@ -23,9 +23,10 @@ const Gameboy = () => {
         resetCount,
     } = useSilhouetteGameStore();
 
-    const [randomPoke, setRandomPoke] = useState<Pokemon | null>(null);
+    const [randomPoke, setRandomPoke] = useState<Pokemon>(null);
     const [options, setOptions] = useState<Pokemon[]>([]);
     const initialized = useRef(false);
+    const optionsCount = 3;
 
     useEffect(() => {
 
@@ -37,7 +38,9 @@ const Gameboy = () => {
             getRandomPoke,
             removeRandomPoke,
             addToUtilizedStore,
-            setRandomPoke
+            setRandomPoke,
+            setOptions,
+            optionsCount,
         });
 
         if (!poke) return;
@@ -63,7 +66,7 @@ const Gameboy = () => {
                             <div className='flex flex-col min-w-2xs w-full'>
                                 <GameboyScreen randomPoke={randomPoke} options={options} />
                                 <GameboyAnswerOptions randomPoke={randomPoke} options={options} />
-                                <GameboyControls initialized={initialized} pokemonList={pokemonList} />
+                                <GameboyControls initialized={initialized} />
                             </div>
                         </div>
                         <GameboyLegend />

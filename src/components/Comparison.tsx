@@ -22,7 +22,7 @@ const Comparison = () => {
     const { getComparison } = useGetComparison()
     const { submitComparison } = useComparisonSubmit()
 
-    let padded = [...pokeToCompare];
+    const padded = [...pokeToCompare];
     while (padded.length < comparisonCount) {
         padded.push(null);
     }

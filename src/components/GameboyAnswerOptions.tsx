@@ -6,16 +6,25 @@ import { type GameboyAnswerOptionsProps } from '../types/GameBoyAnswerOptionsPro
 import { useGameKeyboardEvent } from '../hooks/useGameKeyboardEvent';
 
 const GameboyAnswerOptions = ({ randomPoke, options }: GameboyAnswerOptionsProps) => {
+
+
+    const narrowedPhases = {
+        start: { val: "start ended" },
+        booting: { val: "booting ended" },
+        tally: { val: "tally ended" },
+        quit: { val: "ended" }
+    } as const;
+
     const {
         disableAnswerBtns,
         correctlyAnswered,
         incorrectlyAnswered,
         setDisabledAnswerBtns,
         setGamePhase,
-        gamePhases,
         round,
         setTally,
     } = useSilhouetteGameStore();
+
 
     const handleBtnClick = (btn: string) => {
         HandleAnswerBtnClick({
@@ -28,7 +37,7 @@ const GameboyAnswerOptions = ({ randomPoke, options }: GameboyAnswerOptionsProps
             incorrectlyAnswered,
             gameStarted,
             setGamePhase,
-            gamePhases,
+            gamePhases: narrowedPhases,
             round,
             setTally,
         })

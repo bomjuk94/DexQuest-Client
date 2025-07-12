@@ -8,7 +8,7 @@ type UseInfiniteScrollParams = {
 };
 
 export const useInfiniteScroll = (
-    loaderRef: React.RefObject<HTMLElement>,
+    loaderRef: React.RefObject<T>,
     { hasMore, onLoadMore, delay = 300 }: UseInfiniteScrollParams
 ) => {
     const savedCallback = useRef(onLoadMore);
