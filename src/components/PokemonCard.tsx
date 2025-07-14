@@ -54,6 +54,7 @@ const PokemonCard = ({ pokemon, context = 'home' }: Pokemon & PokemonCardProps &
                 className="w-sprite h-sprite bg-brand-antique-white"
                 width={96}
                 height={96}
+                loading="lazy"
             />
 
             <div className="flex flex-col gap-3.5">
