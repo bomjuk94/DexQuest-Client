@@ -1,18 +1,13 @@
 import { capitalizeName } from '../utilities/capitalizeName'
 import { Link } from 'react-router'
 import { useProtectedProfile } from '../hooks/useProtectedProfile'
-import { useFavouriteRemoveHandler } from '../hooks/useFavouriteRemoveHandler'
 import { type FavouritesListProps } from '../types/FavouritesListProps'
 
 const FavouritesList = ({ favourite, setFavouritesList, }: FavouritesListProps) => {
 
     const { token } = useProtectedProfile()
-    const { handleFavouriteRemove } = useFavouriteRemoveHandler()
 
-    const imageSrc =
-        typeof favourite.sprites["official-artwork"] === "string"
-            ? favourite.sprites["official-artwork"]
-            : favourite.sprites.other?.["official-artwork"]?.front_default ?? "/assets/fallback.png";
+    const imageSrc = favourite.sprites.front_default || favourite.sprites.other?.["official-artwork"]?.front_default;
 
     return (
         <li className='flex flex-col items-center gap-1.5'>
