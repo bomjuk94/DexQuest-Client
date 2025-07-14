@@ -14,7 +14,10 @@ export const useProtectedProfile = () => {
         const token = localStorage.getItem("token");
         setLoading(true);
 
-        if (!token || !isAuthenticated) {
+        if (!token || !isAuthenticated || useAuthStore.getState().isTokenExpired(token)) {
+            localStorage.removeItem("token");
+            useAuthStore.getState().logout();
+
             setProfile(null);
             setToken(null);
             setError('sessionExpired');
@@ -31,6 +34,7 @@ export const useProtectedProfile = () => {
             });
 
             if (res.status === 401 || res.status === 403) {
+                useAuthStore.getState().logout();
                 setError('sessionExpired');
                 setProfile(null);
                 setToken(null);
@@ -54,7 +58,6 @@ export const useProtectedProfile = () => {
             setLoading(false);
         }
     };
-
 
     useEffect(() => {
         getUser();

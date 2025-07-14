@@ -1,4 +1,6 @@
 import './utilities/themeLoader'
+import StartupAuthCheck from './components/StartUpAuthCheck'
+import TokenWatcher from './components/TokenWatcher'
 import { createRoot } from 'react-dom/client'
 import App from './App'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
@@ -33,6 +35,8 @@ createRoot(document.getElementById('root')!).render(
     <div className="min-h-screen flex flex-col">
       <FavouritesLoader>
         <ScrollToTop />
+        <StartupAuthCheck />
+        <TokenWatcher />
         <Header />
 
         <div className="flex-grow bg-primary">
