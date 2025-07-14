@@ -36,7 +36,8 @@ const PokemonCard = ({ pokemon, context = 'home' }: Pokemon & PokemonCardProps &
     const artwork =
         typeof pokemon.sprites["official-artwork"] === "string"
             ? pokemon.sprites["official-artwork"]
-            : pokemon.sprites.other?.["official-artwork"]?.front_default;
+            : pokemon.sprites.other?.["official-artwork"]?.front_default
+                ? pokemon.sprites.other?.["official-artwork"]?.front_default : pokemon.sprites?.front_default;
 
     const imageSrc = typeof artwork === "string" ? artwork : undefined;
 
